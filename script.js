@@ -1,5 +1,5 @@
 // script.js
-emailjs.init('SUA_PUBLIC_KEY'); // Use a chave correta
+emailjs.init('zMZ8sQeII6L-pevvI'); // Use a chave correta
 
 const participantNameInput = document.getElementById("participantName");
 const participantEmailInput = document.getElementById("participantEmail");
@@ -128,7 +128,7 @@ function sendEmail(giver, receiver) {
   console.log("Parâmetros enviados para emailjs:", emailParams);
 
   emailjs
-    .send("default_service", "SEU_TEMPLATE_ID", emailParams)
+    .send("default_service", "template_01zgzxu", emailParams)
     .then(() => {
       console.log(`E-mail enviado com sucesso para ${giver.email}`);
     })
