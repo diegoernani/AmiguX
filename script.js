@@ -1,5 +1,5 @@
 // script.js
-emailjs.init('zMZ8sQeII6L-pevvI'); // Use a chave correta
+emailjs.init('zMZ8sQeII6L-pevvI'); // Use a chave publica
 
 const participantNameInput = document.getElementById("participantName");
 const participantEmailInput = document.getElementById("participantEmail");
