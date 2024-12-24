@@ -3,14 +3,15 @@ emailjs.init('zMZ8sQeII6L-pevvI'); // Use a chave publica
 
 const participantNameInput = document.getElementById("participantName");
 const participantEmailInput = document.getElementById("participantEmail");
-const participantNotesInput = document.getElementById("participantNotes"); // Novo campo para observações
-const generalInstructionsInput = document.getElementById("generalInstructions"); // Novo campo para instruções gerais
+const participantNotesInput = document.getElementById("participantNotes");
+const generalInstructionsInput = document.getElementById("generalInstructions");
 const addParticipantButton = document.getElementById("addParticipant");
 const participantsList = document.getElementById("participantsList");
 const drawButton = document.getElementById("drawButton");
 const exportButton = document.getElementById("exportButton");
 const resultList = document.getElementById("resultList");
-const loadingMessage = document.createElement("div");
+const loadingMessage = document.getElementById("loadingMessage");
+
 loadingMessage.id = "loadingMessage";
 loadingMessage.style.display = "none";
 loadingMessage.innerHTML = `<div style="display: flex; flex-direction: column; align-items: center;">
@@ -58,15 +59,14 @@ function drawParticipants(participants) {
   let shuffled;
   let isValid = false;
 
-  // Loop até encontrar uma combinação válida
   while (!isValid) {
     shuffled = [...participants];
     shuffled.sort(() => Math.random() - 0.5);
-
     isValid = participants.every((p, i) => p.email !== shuffled[i].email);
   }
 
-  // Criar os pares válidos
+  console.log("Pares validados para o sorteio:", shuffled);
+
   return participants.map((giver, i) => ({
     giver,
     receiver: shuffled[i],
@@ -81,8 +81,8 @@ drawButton.addEventListener("click", () => {
     return;
   }
 
-  resultList.innerHTML = ""; // Limpa os resultados visuais
-  loadingMessage.style.display = "flex"; // Mostra a mensagem de carregamento
+  resultList.innerHTML = "";
+  loadingMessage.style.display = "flex";
 
   setTimeout(() => {
     const results = drawParticipants(participants);
@@ -100,7 +100,6 @@ drawButton.addEventListener("click", () => {
     loadingMessage.style.display = "none";
     alert("Sorteio e envio concluídos com sucesso!");
 
-    // Limpar dados após sorteio
     participants = [];
     generalInstructions = "";
     participantNameInput.value = "";
@@ -110,11 +109,8 @@ drawButton.addEventListener("click", () => {
     updateParticipantsList();
     drawButton.disabled = true;
     exportButton.disabled = true;
-
-  }, 3000); // Aguarda 3 segundos para simular o processo
+  }, 3000);
 });
-
-
 // Enviar e-mail
 function sendEmail(giver, receiver) {
   const emailParams = {
@@ -125,7 +121,7 @@ function sendEmail(giver, receiver) {
     general_instructions: generalInstructions || "Nenhuma",
   };
 
-  console.log("Parâmetros enviados para emailjs:", emailParams);
+  console.log("Parâmetros do e-mail:", emailParams);
 
   emailjs
     .send("default_service", "template_01zgzxu", emailParams)
@@ -136,6 +132,7 @@ function sendEmail(giver, receiver) {
       console.error(`Erro ao enviar e-mail para ${giver.email}:`, error);
     });
 }
+
 
 // Exportar para PDF
 exportButton.addEventListener("click", () => {
