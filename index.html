@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AmiguX</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>AmiguX</h1>
+    <div class="form">
+      <input type="text" id="participantName" placeholder="Nome do participante">
+      <input type="email" id="participantEmail" placeholder="E-mail do participante">
+      <textarea id="participantNotes" placeholder="Observações (Ex: alérgico a camarão, etc.)"></textarea>
+      <button id="addParticipant">Adicionar Participante</button>
+    </div>
+    <textarea id="generalInstructions" placeholder="Instruções Gerais (Ex: valor mínimo, local, horário, etc.)"></textarea>
+    <div class="actions">
+      <button id="drawButton" disabled>Realizar Sorteio</button>
+      <button id="exportButton" disabled>Exportar para PDF</button>
+    </div>
+    <ul id="participantsList"></ul>
+    <ul id="resultList"></ul>
+    <footer style="margin-top: 20px; text-align: center; color: #5e2e8e;">
+      Feito com ❤️ por <a href="https://diegoernani.dev" target="_blank" style="color: #7b3ea2; text-decoration: none;">diegoernani.dev</a>
+    </footer>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3.5.0/dist/email.min.js"></script>
+  <script src="script.js"></script>
+ 
+  
+</body>
+</html>
