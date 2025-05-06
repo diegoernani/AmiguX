@@ -1,5 +1,6 @@
 // script.js
 emailjs.init('zMZ8sQeII6L-pevvI'); // Use a chave publica
+const loadingMessage = document.createElement("div");
 
 const participantNameInput = document.getElementById("participantName");
 const participantEmailInput = document.getElementById("participantEmail");
@@ -10,7 +11,7 @@ const participantsList = document.getElementById("participantsList");
 const drawButton = document.getElementById("drawButton");
 const exportButton = document.getElementById("exportButton");
 const resultList = document.getElementById("resultList");
-const loadingMessage = document.getElementById("loadingMessage");
+// const loadingMessage = document.getElementById("loadingMessage");
 
 loadingMessage.id = "loadingMessage";
 loadingMessage.style.display = "none";
@@ -36,7 +37,7 @@ addParticipantButton.addEventListener("click", () => {
     participantEmailInput.value = "";
     participantNotesInput.value = "";
     drawButton.disabled = participants.length < 2;
-    exportButton.disabled = true;
+    exportButton.disabled = participants.length < 2;
   } else {
     alert("Preencha os campos corretamente e evite e-mails duplicados.");
   }
